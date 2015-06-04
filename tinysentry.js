@@ -93,7 +93,7 @@ window.TinySentry = {
 			message: message,
 			platform: 'javascript',	// required
 			tags: tags,
-			http: {
+			request: {
 				url: this.noHash(location.href),
 				headers: {
 					'User-Agent': navigator.userAgent
