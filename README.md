@@ -6,6 +6,8 @@ Please don't report bugs, features, or ask me anything. This is a simplification
 
 *Bug* GetSentry is consolidating/aggregation errors when it shouldn't be - not sure why - but the problem makes this code fairly useless.
 
+To use, you will need to change the sentry_project and sentry_key. Go to Settings | Client Keys in getsentry.com dashboard and get the project and key from out of the client key e.g. https://ab1234ab1234ab1234ab1234ab1234:0987654321cdef0987654321cdef@app.getsentry.com/99999 where the number at the end is the sentry_project and the uid at the start is the sentry_key.
+
 Ground up rewrite (instead of raven.js) because:
  - raven.js drops stack frames if it can't parse them
  - I found raven.js hard to use
