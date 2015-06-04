@@ -49,7 +49,7 @@ window.TinySentry = {
 
 	// !!!!!!!!!!!!!!!!!!!!!!!! PUT YOUR GETSENTRY.COM PROJECT NUMBER AND KEY HERE !!!!!!!!!!!!!!!!!!!!!!!!
 
-	sentry_project: 99999,
+	sentry_project: 99999999,
 
 	sentry_key: 'ab1234ab1234ab1234ab1234ab1234',	// From example: https://ab1234ab1234ab1234ab1234ab1234:0987654321cdef0987654321cdef@app.getsentry.com/99999
 
