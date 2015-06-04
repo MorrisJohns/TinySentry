@@ -6,14 +6,15 @@ Similar to the combination of https://github.com/getsentry/raven-js with https:/
 
 Please don't report bugs, features, or ask me anything. This is a simplification of other code, provided only because it might be useful to others.
 
-*Bug* GetSentry is consolidating/aggregating errors when it shouldn't be - not sure why - but the problem makes this code fairly useless.
+*Beware* GetSentry sometimes overzealously consolidates/aggregates errors even though they are different. This code repeats the message in a string tag, so that at least you can tell if an error has been consolidated.
 
-To use, you will need to change the sentry_project and sentry_key. Go to Settings | Client Keys in getsentry.com dashboard and get the project and key from out of the client key e.g. `https://ab1234ab1234ab1234ab1234ab1234:0987654321cdef0987654321cdef@app.getsentry.com/99999` where the number at the end is the sentry_project and the uid at the start is the sentry_key.
+To use TinySentry, you will need to change the sentry_project and sentry_key. Go to Settings | Client Keys in getsentry.com dashboard and get the project and key from out of the client key e.g. `https://ab1234ab1234ab1234ab1234ab1234:0987654321cdef0987654321cdef@app.getsentry.com/99999` where the number at the end is the sentry_project and the uid at the start is the sentry_key.
 
 Ground up rewrite (instead of raven.js) because:
  - I found raven.js hard to use
  - raven.js plus tracekit.js is 16000 bytes, versus tinysentry.js is 3000 bytes (approx compressed but not gzipped byte counts).
  - raven.js/tracekit.js loses stack information because they drop stack frames if they can't parse them (eval, internal functions, anonymous functions etc).
+ - however tracekit.js supports stack frames on non-modern browsers better (at the cost of codesize, and an awful setTimeout() call for window.onerror).
 
 Take extra care if editing this code because if this code has exceptions, you won't know about it!
 
