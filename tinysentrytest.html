@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>TinySentry Test</title>
+<script src=tinysentry.js></script>
+<style>
+button {
+	display: block;
+}
+</style>
+
+<div>Refresh between clicking again because only first exception is logged.</div>
+
+<button onclick=logSomethingClick()>log something</button>
+<button onclick=tryCatchClick()>try catch</button>
+<button onclick=onerrorClick()>window.onerror</button>
+<span>Message:</span>
+<input id=message value="Test testtesttest">
+<button onclick=ownmessageClick()>own message</button>
+<script>
+var errorFunction;
+
+var evalTest = eval('functionInEval = function(){xxmyTest1()}').bind({});
+
+function myTest1() {
+	errorFunction();
+}
+
+function anon() {
+	return function(x) {x()};
+}
+
+function go() {
+	anon()(evalTest);
+}
+
+function tryCatchClick() {
+	errorFunction = function() {
+		zzzzzzz;
+	};
+	try {
+		go();
+	} catch (e) {
+		TinySentry.log(e, 'tryCatchClick', {eventType: event && event.type});
+	}
+}
+
+function onerrorClick() {
+	TinySentry.onerrorRegister();
+	errorFunction = function() {
+		yyyyyyy;
+	};
+	go();
+}
+
+function logSomethingClick() {	
+	TinySentry.log('Log something', 'logSomethingClick', null, {level: 'warning'});
+}
+
+function ownmessageClick() {	
+	errorFunction = function() {
+		xxxxxx;
+	};
+	var message = document.getElementById('message').value;
+	try {
+		go();
+	} catch (e) {
+		TinySentry.log(message, 'ownmessageClick', {eventType: event && event.type}, {level: 'info', ex: e});
+	}
+}
+</script>
