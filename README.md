@@ -4,7 +4,7 @@ This pushes exception or logging info into GetSentry.com from the browser, like 
 
 Please don't report bugs, features, or ask me anything. This is a simplification of other code, provided only because it might be useful to others.
 
-*Bug* GetSentry is consolidating/aggregation errors when it shouldn't be - not sure why - but the problem makes this code fairly useless.
+*Bug* GetSentry is consolidating/aggregating errors when it shouldn't be - not sure why - but the problem makes this code fairly useless.
 
 To use, you will need to change the sentry_project and sentry_key. Go to Settings | Client Keys in getsentry.com dashboard and get the project and key from out of the client key e.g. `https://ab1234ab1234ab1234ab1234ab1234:0987654321cdef0987654321cdef@app.getsentry.com/99999` where the number at the end is the sentry_project and the uid at the start is the sentry_key.
 
