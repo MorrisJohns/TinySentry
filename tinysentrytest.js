@@ -43,6 +43,7 @@
 	}
 
 	function onerrorClick() {
+		TinySentry.onerrorRegister();
 		errorFunction = function() {
 			yyyyyyy;
 		};
@@ -54,7 +55,6 @@
 	}
 
 	function ownmessageClick() {	
-		TinySentry.onerrorRegister();
 		errorFunction = function() {
 			xxxxxx;
 		};
