@@ -1,21 +1,4 @@
 
-/*
-<div>Refresh between clicking again because only first exception is logged.</div>
-
-<button onclick=DebugSentryTest.logSomethingClick()>log something</button>
-<br>
-
-<button onclick=DebugSentryTest.tryCatchClick()>try catch</button>
-<br>
-
-<button onclick=DebugSentryTest.onerrorClick()>window.onerror</button>
-<br>
-
-<span>Message:</span>
-<input id=message value="Test testtesttest">
-<button onclick=DebugSentryTest.ownmessageClick()>own message</button>
-<br>
-*/
 
 (function () {
 
@@ -54,16 +37,22 @@
 		TinySentry.log('Log something', 'logSomethingClick', null, {level: 'warning'});
 	}
 
-	function ownmessageClick() {	
-		errorFunction = function() {
+	function tryCatch2Click() {	
+		function aFunction() {
 			xxxxxx;
 		};
+		errorFunction = aFunction;
 		var message = document.getElementById('message').value;
 		try {
 			go();
 		} catch (e) {
-			TinySentry.log(message, 'ownmessageClick', {eventType: event && event.type}, {ex: e});
+			TinySentry.log('Another try catch', 'ownmessageClick', {eventType: event && event.type}, {ex: e});
 		}
+	}
+
+	function ownmessageClick() {	
+		var message = document.getElementById('message').value;
+		TinySentry.log(message, 'ownmessageClick', {eventType: event && event.type});
 	}
 
 	var errorFunction;
@@ -72,6 +61,7 @@
 
 	window.TinySentryTest = {
 		tryCatchClick: tryCatchClick,
+		tryCatch2Click: tryCatch2Click,
 		onerrorClick: onerrorClick,
 		logSomethingClick: logSomethingClick,
 		ownmessageClick: ownmessageClick
